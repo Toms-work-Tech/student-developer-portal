@@ -3,77 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechLearn Portal</title>
+    <meta name="description" content="TechLearn Portal - Professional Technology Learning Platform for Developers and Students">
+    <meta name="keywords" content="programming, coding, web development, technology, learning, education">
+    <meta name="author" content="TechLearn Portal">
+    <title>TechLearn Portal | Professional Tech Education Platform</title>
+    
+    <!-- Preconnect to external resources for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Modern Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 </head>
 <body>
-    <div class="auth-container" id="auth-container">
-        <div class="auth-card">
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login">Login</button>
-                <button class="auth-tab" data-tab="signup">Sign Up</button>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-rocket"></i>
+                <span>TechLearn</span>
             </div>
-            
-            <div class="auth-content" id="auth-content">
-                <!-- Login Form -->
-                <form id="login-form" class="auth-form active">
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" id="login-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="login-role">I am a:</label>
-                        <select id="login-role">
-                            <option value="student">Student</option>
-                            <option value="developer">Developer/Teacher</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="auth-btn">Login</button>
-                </form>
-                
-                <!-- Signup Form -->
-                <form id="signup-form" class="auth-form">
-                    <div class="form-group">
-                        <label for="signup-name">Full Name</label>
-                        <input type="text" id="signup-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-role">I am a:</label>
-                        <select id="signup-role">
-                            <option value="student">Student</option>
-                            <option value="developer">Developer/Teacher</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="auth-btn">Create Account</button>
-                </form>
-            </div>
+            <div class="loading-spinner"></div>
+            <p>Initializing your learning environment...</p>
         </div>
     </div>
 
+    <!-- Authentication Container -->
+    <main class="auth-container" id="auth-container">
+        <div class="auth-wrapper">
+            <div class="auth-branding">
+                <div class="brand-logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>TechLearn</span>
+                </div>
+                <h1>Welcome to the Future of Tech Education</h1>
+                <p>Join thousands of developers and students mastering cutting-edge technologies</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Node.js</span>
+                    <span class="tech-badge">AI/ML</span>
+                </div>
+            </div>
+            
+            <div class="auth-card">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                    <button class="auth-tab" data-tab="signup">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </div>
+                
+                <div class="auth-content" id="auth-content">
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form active" novalidate>
+                        <div class="form-group">
+                            <label for="login-email">
+                                <i class="fas fa-envelope"></i>
+                                Email Address
+                            </label>
+                            <input type="email" id="login-email" required autocomplete="email" placeholder="developer@techlearn.com">
+                            <div class="form-error" id="login-email-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <div class="password-input">
+                                <input type="password" id="login-password" required autocomplete="current-password" placeholder="Enter your password">
+                                <button type="button" class="password-toggle" data-target="login-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-error" id="login-password-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-role">
+                                <i class="fas fa-user-tag"></i>
+                                Account Type
+                            </label>
+                            <select id="login-role" required>
+                                <option value="">Select your role</option>
+                                <option value="student">🎓 Student / Learner</option>
+                                <option value="developer">👨‍💻 Developer / Instructor</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="auth-btn">
+                            <i class="fas fa-rocket"></i>
+                            Launch Learning Journey
+                        </button>
+                        <div class="auth-links">
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+                    </form>
+                    
+                    <!-- Signup Form -->
+                    <form id="signup-form" class="auth-form" novalidate>
+                        <div class="form-group">
+                            <label for="signup-name">
+                                <i class="fas fa-user"></i>
+                                Full Name
+                            </label>
+                            <input type="text" id="signup-name" required autocomplete="name" placeholder="John Doe">
+                            <div class="form-error" id="signup-name-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">
+                                <i class="fas fa-envelope"></i>
+                                Email Address
+                            </label>
+                            <input type="email" id="signup-email" required autocomplete="email" placeholder="john@example.com">
+                            <div class="form-error" id="signup-email-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <div class="password-input">
+                                <input type="password" id="signup-password" required autocomplete="new-password" placeholder="Create a strong password">
+                                <button type="button" class="password-toggle" data-target="signup-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength" id="password-strength"></div>
+                            <div class="form-error" id="signup-password-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-role">
+                                <i class="fas fa-user-tag"></i>
+                                Account Type
+                            </label>
+                            <select id="signup-role" required>
+                                <option value="">Select your role</option>
+                                <option value="student">🎓 Student / Learner</option>
+                                <option value="developer">👨‍💻 Developer / Instructor</option>
+                            </select>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms-agreement" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="privacy-link">Privacy Policy</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="auth-btn">
+                            <i class="fas fa-user-plus"></i>
+                            Create My Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <!-- Student Portal (initially hidden) -->
-    <div class="portal-container" id="student-portal">
+    <div class="portal-container" id="student-portal" role="main">
         <!-- Student portal content will be loaded here by JavaScript -->
     </div>
 
     <!-- Developer Portal (initially hidden) -->
-    <div class="portal-container" id="developer-portal">
+    <div class="portal-container" id="developer-portal" role="main">
         <!-- Developer portal content will be loaded here by JavaScript -->
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
